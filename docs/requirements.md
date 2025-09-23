@@ -18,6 +18,7 @@
 - **コード品質**: Biome（ESLint代替）
 - **UI開発**: Storybook
 - **DB**: SQLite
+- **UIライブラリ**: shadcn/ui + tailwind css
 
 ## 3. 機能要件
 
