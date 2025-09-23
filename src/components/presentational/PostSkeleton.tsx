@@ -22,10 +22,14 @@ export function PostSkeleton() {
 }
 
 export function PostListSkeleton() {
+  const skeletonItems = Array.from({ length: 5 }, (_, i) => ({
+    id: `skeleton-${i}`,
+  }));
+
   return (
     <div className="space-y-4">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <PostSkeleton key={i} />
+      {skeletonItems.map((item) => (
+        <PostSkeleton key={item.id} />
       ))}
     </div>
   );
