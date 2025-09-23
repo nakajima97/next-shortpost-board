@@ -1,0 +1,27 @@
+'use client'
+
+import { notFound } from 'next/navigation'
+import { MainLayout } from '@/components/layout/MainLayout'
+import { PostDetail } from '@/features/posts/presentational/PostDetail'
+import { mockPosts } from '@/utils/mockData'
+
+interface PostDetailPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default function PostDetailPage({ params }: PostDetailPageProps) {
+  const postId = parseInt(params.id)
+  const post = mockPosts.find(p => p.id === postId)
+
+  if (!post) {
+    notFound()
+  }
+
+  return (
+    <MainLayout>
+      <PostDetail post={post} />
+    </MainLayout>
+  )
+}
