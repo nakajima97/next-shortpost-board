@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/shadcn/input';
 import { Textarea } from '@/components/ui/shadcn/textarea';
 import { useState } from 'react';
 
-interface CreatePostModalProps {
+export interface CreatePostModalProps {
   open: boolean;
   onClose: () => void;
 }

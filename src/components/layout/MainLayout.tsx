@@ -1,9 +1,9 @@
 'use client';
 
-import { CreatePostModal } from '@/features/posts/presentational/CreatePostModal';
 import { useState } from 'react';
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { CreatePostModalContainer } from '@/features/posts/containers/CreatePostModalContainer';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ export function MainLayout({ children }: MainLayoutProps) {
 
       <Footer />
 
-      <CreatePostModal
+      <CreatePostModalContainer
         open={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
       />
