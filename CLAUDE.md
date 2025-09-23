@@ -46,29 +46,6 @@ pnpm build-storybook  # Storybookビルド
 - **Storybook** でコンポーネント開発
 - **TypeScript** で型安全性を確保
 
-### ディレクトリ構造
-```
-src/
-├── app/              # Next.js App Routerのルート定義
-├── components/       # 再利用可能なUIコンポーネント（アプリ全体で共有）
-│   ├── presentational/  # プレゼンテーショナルコンポーネント
-│   └── containers/      # コンテナコンポーネント
-├── features/         # 機能固有のコンポーネント・ロジック
-│   └── featureName/
-│       ├── presentational/
-│       ├── containers/
-│       ├── hooks/
-│       ├── types/
-│       ├── lib/
-│       ├── services/
-│       └── utils/
-├── hooks/           # アプリ全体で共有するカスタムReactフック
-├── types/           # アプリ全体で使用する型定義
-├── lib/             # 外部ライブラリの設定やラッパー
-├── services/        # 外部サービスとの通信レイヤー
-└── utils/           # 純粋なユーティリティ関数
-```
-
 ### 設計方針
 - コンポーネントをPresentational/Containerパターンで分離
 - 機能ごとに`features/`ディレクトリで分割して関心の分離
