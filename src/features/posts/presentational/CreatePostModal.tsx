@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/shadcn/dialog';
 import { Input } from '@/components/ui/shadcn/input';
 import { Textarea } from '@/components/ui/shadcn/textarea';
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
 export interface CreatePostModalProps {
   open: boolean;
@@ -18,15 +18,31 @@ export interface CreatePostModalProps {
   formAction?: (payload: FormData) => void;
 }
 
-export function CreatePostModal({ open, onClose, formAction }: CreatePostModalProps) {
+export interface CreatePostModalRef {
+  resetForm: () => void;
+}
+
+export const CreatePostModal = forwardRef<
+  CreatePostModalRef,
+  CreatePostModalProps
+>(function CreatePostModal({ open, onClose, formAction }, ref) {
   const [handleName, setHandleName] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const resetForm = () => {
+    setHandleName('');
+    setContent('');
+    setIsSubmitting(false);
+  };
+
+  useImperativeHandle(ref, () => ({
+    resetForm,
+  }));
+
   const handleClose = () => {
     if (!isSubmitting) {
-      setHandleName('');
-      setContent('');
+      resetForm();
       onClose();
     }
   };
@@ -38,7 +54,13 @@ export function CreatePostModal({ open, onClose, formAction }: CreatePostModalPr
           <DialogTitle>新しい投稿を作成</DialogTitle>
         </DialogHeader>
 
-        <form className="space-y-4" action={formAction}>
+        <form
+          className="space-y-4"
+          action={(formData) => {
+            setIsSubmitting(true);
+            formAction?.(formData);
+          }}
+        >
           <div>
             <label
               htmlFor="handleName"
@@ -53,7 +75,7 @@ export function CreatePostModal({ open, onClose, formAction }: CreatePostModalPr
               placeholder="あなたの名前"
               maxLength={50}
               disabled={isSubmitting}
-              name='handleName'
+              name="handleName"
               required
             />
           </div>
@@ -73,7 +95,7 @@ export function CreatePostModal({ open, onClose, formAction }: CreatePostModalPr
               rows={4}
               maxLength={280}
               disabled={isSubmitting}
-              name='content'
+              name="content"
               required
             />
             <div className="text-right text-sm text-gray-500 mt-1">
@@ -102,4 +124,4 @@ export function CreatePostModal({ open, onClose, formAction }: CreatePostModalPr
       </DialogContent>
     </Dialog>
   );
-}
+});

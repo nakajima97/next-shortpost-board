@@ -1,9 +1,9 @@
 'use client';
 
+import { CreatePostModalContainer } from '@/features/posts/containers/CreatePostModalContainer';
 import { useState } from 'react';
 import { Footer } from './Footer';
 import { Header } from './Header';
-import { CreatePostModalContainer } from '@/features/posts/containers/CreatePostModalContainer';
 
 interface MainLayoutProps {
   children: React.ReactNode;

@@ -1,17 +1,26 @@
-'use client'
+'use client';
 
-import { useActionState, useState } from "react"
-import { submitPostsAction } from "../actions/submitPostsAction"
-import { CreatePostModal, type CreatePostModalProps } from "../presentational/CreatePostModal"
+import { useRef } from 'react';
+import { usePostSubmission } from '../hooks/usePostSubmission';
+import {
+  CreatePostModal,
+  type CreatePostModalProps,
+} from '../presentational/CreatePostModal';
 
+export interface CreatePostModalContainerProps
+  extends Omit<CreatePostModalProps, 'formAction' | 'onReset'> {}
 
-export const CreatePostModalContainer = (props: CreatePostModalProps) => {
-  const [state, formAction] = useActionState(submitPostsAction, undefined)
+export const CreatePostModalContainer = (
+  props: CreatePostModalContainerProps,
+) => {
+  const modalRef = useRef<{ resetForm: () => void }>(null);
 
-  return (
-    <CreatePostModal
-      {...props}
-      formAction={formAction}
-    />
-  )
-}
+  const handleSuccess = () => {
+    modalRef.current?.resetForm();
+    props.onClose();
+  };
+
+  const { formAction } = usePostSubmission(handleSuccess);
+
+  return <CreatePostModal {...props} ref={modalRef} formAction={formAction} />;
+};
