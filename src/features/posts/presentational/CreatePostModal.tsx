@@ -10,42 +10,39 @@ import {
 } from '@/components/ui/shadcn/dialog';
 import { Input } from '@/components/ui/shadcn/input';
 import { Textarea } from '@/components/ui/shadcn/textarea';
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
-interface CreatePostModalProps {
+export interface CreatePostModalProps {
   open: boolean;
   onClose: () => void;
+  formAction?: (payload: FormData) => void;
 }
 
-export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
+export interface CreatePostModalRef {
+  resetForm: () => void;
+}
+
+export const CreatePostModal = forwardRef<
+  CreatePostModalRef,
+  CreatePostModalProps
+>(function CreatePostModal({ open, onClose, formAction }, ref) {
   const [handleName, setHandleName] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!handleName.trim() || !content.trim()) return;
-
-    setIsSubmitting(true);
-
-    // 静的版では実際の送信は行わず、アラートを表示
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    alert(
-      `投稿が作成されました！\n\nハンドルネーム: ${handleName}\n内容: ${content}`,
-    );
-
+  const resetForm = () => {
     setHandleName('');
     setContent('');
     setIsSubmitting(false);
-    onClose();
   };
+
+  useImperativeHandle(ref, () => ({
+    resetForm,
+  }));
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setHandleName('');
-      setContent('');
+      resetForm();
       onClose();
     }
   };
@@ -57,7 +54,13 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
           <DialogTitle>新しい投稿を作成</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          className="space-y-4"
+          action={(formData) => {
+            setIsSubmitting(true);
+            formAction?.(formData);
+          }}
+        >
           <div>
             <label
               htmlFor="handleName"
@@ -72,6 +75,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               placeholder="あなたの名前"
               maxLength={50}
               disabled={isSubmitting}
+              name="handleName"
               required
             />
           </div>
@@ -91,6 +95,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               rows={4}
               maxLength={280}
               disabled={isSubmitting}
+              name="content"
               required
             />
             <div className="text-right text-sm text-gray-500 mt-1">
@@ -119,4 +124,4 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
       </DialogContent>
     </Dialog>
   );
-}
+});
