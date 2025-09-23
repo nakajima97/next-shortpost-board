@@ -57,6 +57,9 @@
     │   │   ├── client.ts # APIクライアントの設定
     │   │   └── endpoints/ # APIエンドポイントの定義
     │   └── ...
+    ├── db/          # SQLite関連
+    │   ├── scheme/          # スキーマ
+    │   └── client.ts       # clientの生成
     └── utils/             # 純粋なユーティリティ関数
         ├── date.ts       # 日付操作
         ├── format.ts     # 文字列フォーマット
