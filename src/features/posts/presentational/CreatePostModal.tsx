@@ -1,52 +1,54 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { Button } from '@/components/ui/shadcn/button';
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-} from '@/components/ui/shadcn/dialog'
-import { Button } from '@/components/ui/shadcn/button'
-import { Input } from '@/components/ui/shadcn/input'
-import { Textarea } from '@/components/ui/shadcn/textarea'
+} from '@/components/ui/shadcn/dialog';
+import { Input } from '@/components/ui/shadcn/input';
+import { Textarea } from '@/components/ui/shadcn/textarea';
+import { useState } from 'react';
 
 interface CreatePostModalProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
-  const [handleName, setHandleName] = useState('')
-  const [content, setContent] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [handleName, setHandleName] = useState('');
+  const [content, setContent] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!handleName.trim() || !content.trim()) return
-    
-    setIsSubmitting(true)
-    
+    e.preventDefault();
+
+    if (!handleName.trim() || !content.trim()) return;
+
+    setIsSubmitting(true);
+
     // 静的版では実際の送信は行わず、アラートを表示
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    alert(`投稿が作成されました！\n\nハンドルネーム: ${handleName}\n内容: ${content}`)
-    
-    setHandleName('')
-    setContent('')
-    setIsSubmitting(false)
-    onClose()
-  }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    alert(
+      `投稿が作成されました！\n\nハンドルネーム: ${handleName}\n内容: ${content}`,
+    );
+
+    setHandleName('');
+    setContent('');
+    setIsSubmitting(false);
+    onClose();
+  };
 
   const handleClose = () => {
     if (!isSubmitting) {
-      setHandleName('')
-      setContent('')
-      onClose()
+      setHandleName('');
+      setContent('');
+      onClose();
     }
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -54,10 +56,13 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
         <DialogHeader>
           <DialogTitle>新しい投稿を作成</DialogTitle>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="handleName" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="handleName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               ハンドルネーム
             </label>
             <Input
@@ -70,9 +75,12 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               required
             />
           </div>
-          
+
           <div>
-            <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="content"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               投稿内容
             </label>
             <Textarea
@@ -89,7 +97,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               {content.length}/280
             </div>
           </div>
-          
+
           <DialogFooter className="gap-2">
             <Button
               type="button"
@@ -110,5 +118,5 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -5,5 +5,5 @@ export function Footer() {
         <p>&copy; 2024 ショート投稿掲示板. All rights reserved.</p>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card'
-import { Skeleton } from '@/components/ui/shadcn/skeleton'
+import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card';
+import { Skeleton } from '@/components/ui/shadcn/skeleton';
 
 export function PostSkeleton() {
   return (
@@ -18,7 +18,7 @@ export function PostSkeleton() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 export function PostListSkeleton() {
@@ -28,5 +28,5 @@ export function PostListSkeleton() {
         <PostSkeleton key={i} />
       ))}
     </div>
-  )
+  );
 }

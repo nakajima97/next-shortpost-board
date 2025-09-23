@@ -1,6 +1,6 @@
-import { MainLayout } from '@/components/layout/MainLayout'
-import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card'
-import { Skeleton } from '@/components/ui/shadcn/skeleton'
+import { MainLayout } from '@/components/layout/MainLayout';
+import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card';
+import { Skeleton } from '@/components/ui/shadcn/skeleton';
 
 export default function PostDetailLoading() {
   return (
@@ -31,5 +31,5 @@ export default function PostDetailLoading() {
         </div>
       </div>
     </MainLayout>
-  )
+  );
 }
