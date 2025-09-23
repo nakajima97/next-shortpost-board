@@ -15,32 +15,13 @@ import { useState } from 'react';
 export interface CreatePostModalProps {
   open: boolean;
   onClose: () => void;
+  formAction?: (payload: FormData) => void;
 }
 
-export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
+export function CreatePostModal({ open, onClose, formAction }: CreatePostModalProps) {
   const [handleName, setHandleName] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!handleName.trim() || !content.trim()) return;
-
-    setIsSubmitting(true);
-
-    // 静的版では実際の送信は行わず、アラートを表示
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    alert(
-      `投稿が作成されました！\n\nハンドルネーム: ${handleName}\n内容: ${content}`,
-    );
-
-    setHandleName('');
-    setContent('');
-    setIsSubmitting(false);
-    onClose();
-  };
 
   const handleClose = () => {
     if (!isSubmitting) {
@@ -57,7 +38,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
           <DialogTitle>新しい投稿を作成</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4" action={formAction}>
           <div>
             <label
               htmlFor="handleName"
@@ -72,6 +53,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               placeholder="あなたの名前"
               maxLength={50}
               disabled={isSubmitting}
+              name='handleName'
               required
             />
           </div>
@@ -91,6 +73,7 @@ export function CreatePostModal({ open, onClose }: CreatePostModalProps) {
               rows={4}
               maxLength={280}
               disabled={isSubmitting}
+              name='content'
               required
             />
             <div className="text-right text-sm text-gray-500 mt-1">

@@ -7,11 +7,16 @@ type StateType = {
   message: string;
 } | undefined
 
+export type SubmitPostsActionType = (
+    prevState: StateType,
+    formData: FormData
+  ) => Promise<StateType>;
+
 export const submitPostsAction = async(
   prevState: StateType,
   queryData: FormData
  ): Promise<StateType> => {
-  const handleName = queryData.get('handle_name') as string;
+  const handleName = queryData.get('handleName') as string;
   const content = queryData.get('content') as string;
 
   if (!handleName || !content) {

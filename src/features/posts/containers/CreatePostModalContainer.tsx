@@ -6,11 +6,12 @@ import { CreatePostModal, type CreatePostModalProps } from "../presentational/Cr
 
 
 export const CreatePostModalContainer = (props: CreatePostModalProps) => {
-  const [formAction] = useActionState(submitPostsAction, undefined)
+  const [state, formAction] = useActionState(submitPostsAction, undefined)
 
   return (
-    <CreatePostModal 
+    <CreatePostModal
       {...props}
+      formAction={formAction}
     />
   )
 }
