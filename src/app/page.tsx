@@ -4,7 +4,7 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { PostList } from '@/features/posts/presentational/PostList';
 import { mockPosts } from '@/utils/mockData';
 
-export default function HomePage() {
+const HomePage = () => {
   const sortedPosts = [...mockPosts].sort(
     (a, b) =>
       new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
@@ -22,4 +22,6 @@ export default function HomePage() {
       </div>
     </MainLayout>
   );
-}
+};
+
+export default HomePage;

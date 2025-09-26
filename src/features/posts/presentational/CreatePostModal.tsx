@@ -25,7 +25,7 @@ export interface CreatePostModalRef {
 export const CreatePostModal = forwardRef<
   CreatePostModalRef,
   CreatePostModalProps
->(function CreatePostModal({ open, onClose, formAction }, ref) {
+>(({ open, onClose, formAction }, ref) => {
   const [handleName, setHandleName] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

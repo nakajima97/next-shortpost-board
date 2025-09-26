@@ -10,7 +10,7 @@ interface PostDetailProps {
   onDelete?: () => void;
 }
 
-export function PostDetail({ post, onDelete }: PostDetailProps) {
+export const PostDetail = ({ post, onDelete }: PostDetailProps) => {
   const currentUserUuid = getCurrentUserUuid();
   const canDelete = post.author_uuid === currentUserUuid;
 
@@ -66,4 +66,4 @@ export function PostDetail({ post, onDelete }: PostDetailProps) {
       </div>
     </div>
   );
-}
+};

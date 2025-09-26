@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/shadcn/button';
 import Link from 'next/link';
 
-export default function PostNotFound() {
+const PostNotFound = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="text-center space-y-6">
@@ -25,4 +25,6 @@ export default function PostNotFound() {
       </div>
     </div>
   );
-}
+};
+
+export default PostNotFound;

@@ -6,7 +6,7 @@ interface PostCardProps {
   post: Post;
 }
 
-export function PostCard({ post }: PostCardProps) {
+export const PostCard = ({ post }: PostCardProps) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ja-JP', {
@@ -37,4 +37,4 @@ export function PostCard({ post }: PostCardProps) {
       </Card>
     </Link>
   );
-}
+};
