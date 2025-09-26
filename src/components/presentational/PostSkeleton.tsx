@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card';
 import { Skeleton } from '@/components/ui/shadcn/skeleton';
 
-export function PostSkeleton() {
+export const PostSkeleton = () => {
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -19,9 +19,9 @@ export function PostSkeleton() {
       </CardContent>
     </Card>
   );
-}
+};
 
-export function PostListSkeleton() {
+export const PostListSkeleton = () => {
   const skeletonItems = Array.from({ length: 5 }, (_, i) => ({
     id: `skeleton-${i}`,
   }));
@@ -33,4 +33,4 @@ export function PostListSkeleton() {
       ))}
     </div>
   );
-}
+};

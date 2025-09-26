@@ -5,7 +5,7 @@ interface PostListProps {
   posts: Post[];
 }
 
-export function PostList({ posts }: PostListProps) {
+export const PostList = ({ posts }: PostListProps) => {
   if (posts.length === 0) {
     return (
       <div className="text-center py-12">
@@ -24,4 +24,4 @@ export function PostList({ posts }: PostListProps) {
       ))}
     </div>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { MainLayout } from '@/components/layout/MainLayout';
 import { PostListSkeleton } from '@/components/presentational/PostSkeleton';
 
-export default function Loading() {
+const Loading = () => {
   return (
     <MainLayout>
       <div className="space-y-6">
@@ -14,4 +14,6 @@ export default function Loading() {
       </div>
     </MainLayout>
   );
-}
+};
+
+export default Loading;

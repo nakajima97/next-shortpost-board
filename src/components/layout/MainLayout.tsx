@@ -9,7 +9,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export const MainLayout = ({ children }: MainLayoutProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   return (
@@ -28,4 +28,4 @@ export function MainLayout({ children }: MainLayoutProps) {
       />
     </div>
   );
-}
+};

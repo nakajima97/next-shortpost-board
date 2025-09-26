@@ -2,7 +2,7 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { Card, CardContent, CardHeader } from '@/components/ui/shadcn/card';
 import { Skeleton } from '@/components/ui/shadcn/skeleton';
 
-export default function PostDetailLoading() {
+const PostDetailLoading = () => {
   return (
     <MainLayout>
       <div className="space-y-6">
@@ -32,4 +32,6 @@ export default function PostDetailLoading() {
       </div>
     </MainLayout>
   );
-}
+};
+
+export default PostDetailLoading;

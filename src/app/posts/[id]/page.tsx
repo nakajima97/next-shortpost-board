@@ -11,7 +11,7 @@ interface PostDetailPageProps {
   };
 }
 
-export default function PostDetailPage({ params }: PostDetailPageProps) {
+const PostDetailPage = ({ params }: PostDetailPageProps) => {
   const postId = Number.parseInt(params.id);
   const post = mockPosts.find((p) => p.id === postId);
 
@@ -24,4 +24,6 @@ export default function PostDetailPage({ params }: PostDetailPageProps) {
       <PostDetail post={post} />
     </MainLayout>
   );
-}
+};
+
+export default PostDetailPage;
