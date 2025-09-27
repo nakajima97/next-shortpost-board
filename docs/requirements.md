@@ -19,6 +19,7 @@
 - **UI開発**: Storybook
 - **DB**: SQLite
 - **UIライブラリ**: shadcn/ui + tailwind css
+- **データフェッチ**: SWR
 
 ## 3. 機能要件
 
