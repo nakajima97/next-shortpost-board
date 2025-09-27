@@ -1,4 +1,4 @@
-import { getTimeline } from '@/features/timeline/services/getTimeline'
+import { getTimeline } from '@/features/timeline/services/server/getTimelineFromDB'
 import type { NextRequest } from 'next/server'
 
 export const GET = async(_req: NextRequest) => {

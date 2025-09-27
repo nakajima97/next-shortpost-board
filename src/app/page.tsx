@@ -1,27 +1,13 @@
-'use client';
+import { Timeline } from "@/features/timeline/presentational/Timeline"
+import { timelineSchema } from "@/features/timeline/schemas/timeline"
+import { fetchTimeline } from "@/features/timeline/services/server/fetchTimeline"
 
-import { MainLayout } from '@/components/layout/MainLayout';
-import { PostList } from '@/features/posts/presentational/PostList';
-import { mockPosts } from '@/utils/mockData';
-
-const HomePage = () => {
-  const sortedPosts = [...mockPosts].sort(
-    (a, b) =>
-      new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-  );
+const Page = async() => {
+  const timeline = await fetchTimeline()
 
   return (
-    <MainLayout>
-      <div className="space-y-6">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">最新の投稿</h2>
-          <p className="text-gray-600">みんなの短文投稿をチェックしよう</p>
-        </div>
+    <Timeline timeline={timeline} />
+  )
+}
 
-        <PostList posts={sortedPosts} />
-      </div>
-    </MainLayout>
-  );
-};
-
-export default HomePage;
+export default Page
