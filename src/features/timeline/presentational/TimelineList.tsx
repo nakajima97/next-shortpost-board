@@ -1,5 +1,5 @@
-import { TimelineCard } from './TimelineCard';
 import type { TimelineType } from '../schemas/timeline';
+import { TimelineCard } from './TimelineCard';
 
 interface PostListProps {
   timeline: TimelineType;

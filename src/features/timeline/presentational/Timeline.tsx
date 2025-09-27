@@ -1,10 +1,10 @@
-import { MainLayout } from "@/components/layout/MainLayout"
-import type { TimelineType } from "../schemas/timeline"
-import { TimelineList } from "./TimelineList"
+import { MainLayout } from '@/components/layout/MainLayout';
+import type { TimelineType } from '../schemas/timeline';
+import { TimelineList } from './TimelineList';
 
 type Props = {
-  timeline: TimelineType
-}
+  timeline: TimelineType;
+};
 
 export const Timeline = ({ timeline }: Props) => {
   return (
@@ -18,5 +18,5 @@ export const Timeline = ({ timeline }: Props) => {
         <TimelineList timeline={timeline} />
       </div>
     </MainLayout>
-  )
-}
+  );
+};

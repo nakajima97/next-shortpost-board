@@ -4,7 +4,7 @@ import type { PostType } from '../schemas/timeline';
 
 type Props = {
   timeline: PostType;
-}
+};
 
 export const TimelineCard = ({ timeline }: Props) => {
   const formatDate = (dateString: string) => {
