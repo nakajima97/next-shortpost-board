@@ -15,7 +15,7 @@
 - **言語**: TypeScript
 - **パッケージ管理**: pnpm
 - **テスト**: Vitest + jsdom
-- **コード品質**: Biome（ESLint代替）
+- **コード品質**: Biome
 - **UI開発**: Storybook
 - **DB**: SQLite
 - **UIライブラリ**: shadcn/ui + tailwind css
