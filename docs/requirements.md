@@ -20,6 +20,7 @@
 - **DB**: SQLite
 - **UIライブラリ**: shadcn/ui + tailwind css
 - **データフェッチ**: SWR
+- **スキーマ管理**: zod
 
 ## 3. 機能要件
 
